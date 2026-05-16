@@ -46,3 +46,16 @@ SELECT
     ROUND(AVG(MonthlyCharges),2) AS avg_monthly_charge
 FROM cleaned_churn_data
 GROUP BY Churn;
+
+#Revenue Lost Due to Churn
+SELECT 
+ROUND(SUM(MonthlyCharges),2) AS monthly_revenue_lost
+FROM cleaned_churn_data
+WHERE Churn='Yes';
+
+#High risk customers
+SELECT *
+FROM cleaned_churn_data
+WHERE tenure <= 3
+AND Contract='Month-to-month'
+AND Churn='Yes';
